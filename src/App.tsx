@@ -1,10 +1,22 @@
+import { Typography } from "@mui/material";
 import "./App.css";
 
 function App() {
 	return (
 		<main>
-			
-			<h1 style={{ color: "black" }}>The Simpsons Characters</h1>
+			<Typography
+				variant="h4"
+				color={"primary"}
+				sx={{
+					justifyContent: "center",
+					display: "flex",
+					margin: "2em 2em",
+					textWrap: "stable",
+					textAlign: "center",
+				}}
+			>
+				The Simpsons Characters
+			</Typography>
 		</main>
 	);
 }
