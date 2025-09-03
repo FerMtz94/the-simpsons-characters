@@ -1,9 +1,11 @@
 import { Box, List, ListItem, Typography } from "@mui/material";
-import "./App.css";
+import "./styles/App.css";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { getCharacters } from "./api/characters";
 import type { Character } from "./types/character";
+import { CharacterItem } from "./components/CharacterItem";
+import { CharacterList } from "./components/CharacterList";
 
 function App() {
 	const [characters, setCharacters] = useState<Character[]>([]);
@@ -41,17 +43,15 @@ function App() {
 					The Simpsons Characters
 				</Typography>
 			</header>
-			<Box>
-				<List>
-					{characters.map(character => (
-						<ListItem key={character.id}>
-							<Typography color={"primary"}>
-								{character.name}
-							</Typography>
-						</ListItem>
-					))}
-				</List>
-			</Box>
+			<CharacterList>
+				{isLoading && <p>Loading characters...</p>}
+				{!isLoading && characters.length === 0 && <p>No characters found.</p>}
+				{!isLoading && characters.length > 0 && (
+					characters.map((character) => (
+						<CharacterItem key={character.id} character={character} />
+					))
+				)}
+			</CharacterList>
 		</main>
 	);
 }
