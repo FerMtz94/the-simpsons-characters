@@ -1,0 +1,14 @@
+.character-list-container {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	grid-template-rows: auto;
+	justify-items: center;
+	gap: 1em;
+}
+
+.character-item {
+	width: 200px;
+	height: 200px;
+	border: 1px solid black;
+	padding: 12px;
+}
