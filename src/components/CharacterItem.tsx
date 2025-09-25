@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 import type React from "react";
 import type { Character } from "../types/character";
 
@@ -7,8 +7,13 @@ interface CharacterItemProps {
 }
 
 export const CharacterItem: React.FC<CharacterItemProps> = ({ character }) => {
+	const theme = useTheme();
+
 	return (
-		<Box className="character-item">
+		<Box
+			className="character-item"
+			sx={{ backgroundColor: theme.palette.secondary.main }}
+		>
 			<Typography variant="h6">{character.name}</Typography>
 			<Typography variant="body1">Age: {character.age}</Typography>
 			<Typography variant="body1">Birthdate: {character.birthdate}</Typography>
