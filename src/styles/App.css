@@ -10,4 +10,17 @@
 	border-radius: 5px;
 	padding: 12px;
 	overflow-y: hidden;
+	overflow-x: scroll;
+	scrollbar-width: none;
+}
+
+h6 {
+	text-align: center;
+}
+
+.character-image {
+	object-fit: contain;
+	height: 120px;
+	width: 120px;
+	filter: drop-shadow(2px 4px 6px black);
 }
