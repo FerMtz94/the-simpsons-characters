@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 import "./styles/App.css";
 import { useQuery } from "@tanstack/react-query";
-import { Analytics } from "@vercel/analytics/next";
+import { Analytics } from "@vercel/analytics/react";
 import { useEffect, useState } from "react";
 import { getCharacters } from "./api/characters";
 import { CharacterItem } from "./components/CharacterItem";
