@@ -1,6 +1,7 @@
 import { Typography } from "@mui/material";
 import "./styles/App.css";
 import { useQuery } from "@tanstack/react-query";
+import { Analytics } from "@vercel/analytics/next";
 import { useEffect, useState } from "react";
 import { getCharacters } from "./api/characters";
 import { CharacterItem } from "./components/CharacterItem";
@@ -46,6 +47,7 @@ function App() {
 						<CharacterItem key={character.id} character={character} />
 					))}
 			</CharacterList>
+			<Analytics />
 		</main>
 	);
 }
