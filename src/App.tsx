@@ -1,11 +1,11 @@
-import { Box, List, ListItem, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import "./styles/App.css";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { getCharacters } from "./api/characters";
-import type { Character } from "./types/character";
 import { CharacterItem } from "./components/CharacterItem";
 import { CharacterList } from "./components/CharacterList";
+import type { Character } from "./types/character";
 
 function App() {
 	const [characters, setCharacters] = useState<Character[]>([]);
@@ -16,15 +16,9 @@ function App() {
 	});
 
 	useEffect(() => {
-		if (isLoading) {
-			console.log("Loading data...");
-		}
-		if (!characterData) {
-			console.error("No character data available");
-			return;
-		}
+		if (!characterData) return;
 		setCharacters(characterData.results);
-	}, [characterData, isLoading]);
+	}, [characterData]);
 
 	return (
 		<main>
@@ -46,11 +40,11 @@ function App() {
 			<CharacterList>
 				{isLoading && <p>Loading characters...</p>}
 				{!isLoading && characters.length === 0 && <p>No characters found.</p>}
-				{!isLoading && characters.length > 0 && (
+				{!isLoading &&
+					characters.length > 0 &&
 					characters.map((character) => (
 						<CharacterItem key={character.id} character={character} />
-					))
-				)}
+					))}
 			</CharacterList>
 		</main>
 	);
