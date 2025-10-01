@@ -44,10 +44,12 @@ function App() {
 					The Simpsons Characters
 				</Typography>
 			</header>
-			<SearchCharacter
-				characters={characters}
-				setFilteredCharacters={setFilteredCharacters}
-			/>
+			{!isLoading && (
+				<SearchCharacter
+					characters={characters}
+					setFilteredCharacters={setFilteredCharacters}
+				/>
+			)}
 			<CharacterList>
 				{isLoading && <p>Loading characters...</p>}
 				{!isLoading && filteredCharacters.length === 0 && (
