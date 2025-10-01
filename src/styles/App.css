@@ -24,3 +24,9 @@ h6 {
 	width: 120px;
 	filter: drop-shadow(2px 4px 6px black);
 }
+
+.search-character-container {
+	display: flex;
+	justify-content: center;
+	margin: 20px 0;
+}
