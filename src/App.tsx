@@ -6,10 +6,12 @@ import { useEffect, useState } from "react";
 import { getCharacters } from "./api/characters";
 import { CharacterItem } from "./components/CharacterItem";
 import { CharacterList } from "./components/CharacterList";
+import { SearchCharacter } from "./components/SearchCharacter";
 import type { Character } from "./types/character";
 
 function App() {
 	const [characters, setCharacters] = useState<Character[]>([]);
+	const [filteredCharacters, setFilteredCharacters] = useState<Character[]>([]);
 
 	const { data: characterData, isLoading } = useQuery({
 		queryKey: ["characters"],
@@ -20,6 +22,10 @@ function App() {
 		if (!characterData) return;
 		setCharacters(characterData.results);
 	}, [characterData]);
+
+	useEffect(() => {
+		setFilteredCharacters(characters);
+	}, [characters]);
 
 	return (
 		<main>
@@ -38,12 +44,18 @@ function App() {
 					The Simpsons Characters
 				</Typography>
 			</header>
+			<SearchCharacter
+				characters={characters}
+				setFilteredCharacters={setFilteredCharacters}
+			/>
 			<CharacterList>
 				{isLoading && <p>Loading characters...</p>}
-				{!isLoading && characters.length === 0 && <p>No characters found.</p>}
+				{!isLoading && filteredCharacters.length === 0 && (
+					<p>No characters found.</p>
+				)}
 				{!isLoading &&
-					characters.length > 0 &&
-					characters.map((character) => (
+					filteredCharacters.length > 0 &&
+					filteredCharacters.map((character) => (
 						<CharacterItem key={character.id} character={character} />
 					))}
 			</CharacterList>
