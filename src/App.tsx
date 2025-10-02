@@ -34,17 +34,7 @@ function App() {
 	return (
 		<main>
 			<header>
-				<Typography
-					variant="h4"
-					color={"primary"}
-					sx={{
-						justifyContent: "center",
-						display: "flex",
-						margin: "2em 2em",
-						textWrap: "stable",
-						textAlign: "center",
-					}}
-				>
+				<Typography variant="h4" color="primary" className="app-title">
 					The Simpsons Characters
 				</Typography>
 			</header>
