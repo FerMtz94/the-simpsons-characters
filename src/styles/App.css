@@ -25,7 +25,7 @@ h6 {
 	filter: drop-shadow(2px 4px 6px black);
 }
 
-.search-character-container {
+.filter-character-container {
 	display: flex;
 	justify-content: center;
 	margin: 20px 0 40px 0;

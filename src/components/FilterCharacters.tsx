@@ -8,7 +8,7 @@ interface SearchCharacterProps {
 	setFilteredCharacters: React.Dispatch<React.SetStateAction<Character[]>>;
 }
 
-export const SearchCharacter: React.FC<SearchCharacterProps> = ({
+export const FilterCharacters: React.FC<SearchCharacterProps> = ({
 	characters,
 	setFilteredCharacters,
 }) => {
@@ -24,9 +24,9 @@ export const SearchCharacter: React.FC<SearchCharacterProps> = ({
 	};
 
 	return (
-		<Box className="search-character-container">
+		<Box className="filter-character-container">
 			<Input
-				placeholder="Search character..."
+				placeholder="Filter..."
 				onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleSearch(e)}
 				value={inputText}
 			/>

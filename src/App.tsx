@@ -6,9 +6,9 @@ import { useEffect, useState } from "react";
 import { getCharacters } from "./api/characters";
 import { CharacterItem } from "./components/CharacterItem";
 import { CharacterList } from "./components/CharacterList";
+import { FilterCharacters } from "./components/FilterCharacters";
 import { Loading } from "./components/Loading";
 import { PageSelection } from "./components/PageSelection";
-import { SearchCharacter } from "./components/SearchCharacter";
 import type { Character } from "./types/character";
 
 function App() {
@@ -50,7 +50,7 @@ function App() {
 			</header>
 			{isLoading && <Loading />}
 			{!isLoading && (
-				<SearchCharacter
+				<FilterCharacters
 					characters={characters}
 					setFilteredCharacters={setFilteredCharacters}
 				/>
