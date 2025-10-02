@@ -8,6 +8,7 @@ import { CharacterItem } from "./components/CharacterItem";
 import { CharacterList } from "./components/CharacterList";
 import { FilterCharacters } from "./components/FilterCharacters";
 import { Loading } from "./components/Loading";
+import { NoCharactersFound } from "./components/NoCharactersFound";
 import { PageSelection } from "./components/PageSelection";
 import type { Character } from "./types/character";
 
@@ -33,8 +34,8 @@ function App() {
 
 	return (
 		<main>
-			<header>
-				<Typography variant="h4" color="primary" className="app-title">
+			<header className="app-title">
+				<Typography variant="h4" color="primary">
 					The Simpsons Characters
 				</Typography>
 			</header>
@@ -45,10 +46,8 @@ function App() {
 					setFilteredCharacters={setFilteredCharacters}
 				/>
 			)}
+			{!isLoading && filteredCharacters.length === 0 && <NoCharactersFound />}
 			<CharacterList>
-				{!isLoading && filteredCharacters.length === 0 && (
-					<Typography>No characters found.</Typography>
-				)}
 				{!isLoading &&
 					filteredCharacters.length > 0 &&
 					filteredCharacters.map((character) => (
