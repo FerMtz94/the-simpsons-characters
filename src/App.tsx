@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { getCharacters } from "./api/characters";
 import { CharacterItem } from "./components/CharacterItem";
 import { CharacterList } from "./components/CharacterList";
+import { Loading } from "./components/Loading";
 import { PageSelection } from "./components/PageSelection";
 import { SearchCharacter } from "./components/SearchCharacter";
 import type { Character } from "./types/character";
@@ -47,6 +48,7 @@ function App() {
 					The Simpsons Characters
 				</Typography>
 			</header>
+			{isLoading && <Loading />}
 			{!isLoading && (
 				<SearchCharacter
 					characters={characters}
@@ -54,9 +56,8 @@ function App() {
 				/>
 			)}
 			<CharacterList>
-				{isLoading && <p>Loading characters...</p>}
 				{!isLoading && filteredCharacters.length === 0 && (
-					<p>No characters found.</p>
+					<Typography>No characters found.</Typography>
 				)}
 				{!isLoading &&
 					filteredCharacters.length > 0 &&
@@ -64,7 +65,9 @@ function App() {
 						<CharacterItem key={character.id} character={character} />
 					))}
 			</CharacterList>
-			<PageSelection page={page} setPage={setPage} />
+			{!isLoading && filteredCharacters.length > 0 && (
+				<PageSelection page={page} setPage={setPage} />
+			)}
 			<Analytics />
 		</main>
 	);

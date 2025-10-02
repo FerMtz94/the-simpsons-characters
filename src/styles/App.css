@@ -36,3 +36,11 @@ h6 {
 	justify-content: center;
 	margin: 40px 0;
 }
+
+.loading-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100dvw;
+	height: 100dvh;
+}
