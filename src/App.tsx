@@ -23,6 +23,7 @@ function App() {
 	useEffect(() => {
 		if (!characterData) return;
 		setCharacters(characterData.results);
+		window.scrollTo({ top: 0, behavior: "smooth" });
 	}, [characterData]);
 
 	useEffect(() => {
