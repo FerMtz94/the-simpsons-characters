@@ -6,16 +6,18 @@ import { useEffect, useState } from "react";
 import { getCharacters } from "./api/characters";
 import { CharacterItem } from "./components/CharacterItem";
 import { CharacterList } from "./components/CharacterList";
+import { PageSelection } from "./components/PageSelection";
 import { SearchCharacter } from "./components/SearchCharacter";
 import type { Character } from "./types/character";
 
 function App() {
 	const [characters, setCharacters] = useState<Character[]>([]);
 	const [filteredCharacters, setFilteredCharacters] = useState<Character[]>([]);
+	const [page, setPage] = useState(1);
 
 	const { data: characterData, isLoading } = useQuery({
-		queryKey: ["characters"],
-		queryFn: getCharacters,
+		queryKey: ["characters", page],
+		queryFn: () => getCharacters(page.toString()),
 	});
 
 	useEffect(() => {
@@ -61,6 +63,7 @@ function App() {
 						<CharacterItem key={character.id} character={character} />
 					))}
 			</CharacterList>
+			<PageSelection page={page} setPage={setPage} />
 			<Analytics />
 		</main>
 	);
