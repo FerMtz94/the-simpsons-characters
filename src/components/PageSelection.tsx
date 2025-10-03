@@ -31,28 +31,42 @@ export const PageSelection: React.FC<PageSelectionProps> = ({
 	};
 
 	return (
-		<Box className="page-selection-container">
-			<Button
-				variant="contained"
-				color="secondary"
-				onClick={() => {
-					handlePageChange("prev");
-				}}
-			>
-				<ArrowBackIcon fontSize="medium" />
-			</Button>
-			<Box sx={{ padding: "8px" }}>
-				<Typography variant="body1">{page}</Typography>
+		<Box
+			className="page-selection-wrapper"
+			sx={{
+				backdropFilter: "blur(30px)",
+			}}
+		>
+			<Box className="page-selection-container">
+				<Button
+					variant="contained"
+					color="primary"
+					onClick={() => {
+						handlePageChange("prev");
+					}}
+				>
+					<ArrowBackIcon fontSize="medium" />
+				</Button>
+				<Box
+					sx={{
+						display: "flex",
+						justifyContent: "center",
+						alignItems: "center",
+						width: "40px",
+					}}
+				>
+					<Typography variant="body1">{page}</Typography>
+				</Box>
+				<Button
+					variant="contained"
+					color="primary"
+					onClick={() => {
+						handlePageChange("next");
+					}}
+				>
+					<ArrowForwardIcon fontSize="medium" />
+				</Button>
 			</Box>
-			<Button
-				variant="contained"
-				color="secondary"
-				onClick={() => {
-					handlePageChange("next");
-				}}
-			>
-				<ArrowForwardIcon fontSize="medium" />
-			</Button>
 		</Box>
 	);
 };

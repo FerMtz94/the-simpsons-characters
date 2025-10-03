@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import "./styles/App.css";
 import { useQuery } from "@tanstack/react-query";
 import { Analytics } from "@vercel/analytics/react";
@@ -33,32 +33,34 @@ function App() {
 	}, [characters]);
 
 	return (
-		<main>
-			<header className="app-title">
-				<Typography variant="h4" color="primary">
-					The Simpsons Characters
-				</Typography>
-			</header>
-			{isLoading && <Loading />}
-			{!isLoading && (
-				<FilterCharacters
-					characters={characters}
-					setFilteredCharacters={setFilteredCharacters}
-				/>
-			)}
-			{!isLoading && filteredCharacters.length === 0 && <NoCharactersFound />}
-			<CharacterList>
-				{!isLoading &&
-					filteredCharacters.length > 0 &&
-					filteredCharacters.map((character) => (
-						<CharacterItem key={character.id} character={character} />
-					))}
-			</CharacterList>
+		<>
+			<Box component="main" className="app-container">
+				<Box component="header" className="app-title">
+					<Typography variant="h4" color="primary">
+						The Simpsons Characters
+					</Typography>
+				</Box>
+				{isLoading && <Loading />}
+				{!isLoading && (
+					<FilterCharacters
+						characters={characters}
+						setFilteredCharacters={setFilteredCharacters}
+					/>
+				)}
+				{!isLoading && filteredCharacters.length === 0 && <NoCharactersFound />}
+				<CharacterList>
+					{!isLoading &&
+						filteredCharacters.length > 0 &&
+						filteredCharacters.map((character) => (
+							<CharacterItem key={character.id} character={character} />
+						))}
+				</CharacterList>
+			</Box>
 			{!isLoading && filteredCharacters.length > 0 && (
 				<PageSelection page={page} setPage={setPage} />
 			)}
 			<Analytics />
-		</main>
+		</>
 	);
 }
 
