@@ -20,11 +20,23 @@
 }
 
 .character-item {
+	background-color: var(--mui-palette-secondary-main);
 	border-radius: 5px;
 	padding: 12px;
+	rotate: 0deg;
 	overflow-y: hidden;
 	overflow-x: scroll;
 	scrollbar-width: none;
+	transform: scale(1);
+	transition:
+		transform 0.5s,
+		width 0.5s,
+		box-shadow 0.5s;
+}
+
+.character-item:hover {
+	transform: scale(1.05);
+	box-shadow: 0px 0px 20px var(--mui-palette-primary-main);
 }
 
 h6 {

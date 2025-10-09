@@ -1,4 +1,4 @@
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import type React from "react";
 import { useEffect } from "react";
 import type { Character } from "../types/character";
@@ -8,17 +8,12 @@ interface CharacterItemProps {
 }
 
 export const CharacterItem: React.FC<CharacterItemProps> = ({ character }) => {
-	const theme = useTheme();
-
 	useEffect(() => {
 		if (!character) return;
 	}, [character]);
 
 	return (
-		<Box
-			className="character-item"
-			sx={{ backgroundColor: theme.palette.secondary.main }}
-		>
+		<Box className="character-item">
 			<Box sx={{ display: "flex", justifyContent: "center", padding: "12px" }}>
 				<img
 					src={`https://cdn.thesimpsonsapi.com/200${character.portrait_path}`}
