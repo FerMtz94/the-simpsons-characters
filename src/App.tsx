@@ -34,27 +34,36 @@ function App() {
 
 	return (
 		<>
-			<Box component="main" className="app-container">
+			<Box className="app-wrapper">
 				<Box component="header" className="app-title">
 					<Typography variant="h4" color="primary">
 						The Simpsons Characters
 					</Typography>
 				</Box>
-				{isLoading && <Loading />}
-				{!isLoading && (
-					<FilterCharacters
-						characters={characters}
-						setFilteredCharacters={setFilteredCharacters}
-					/>
-				)}
-				{!isLoading && filteredCharacters.length === 0 && <NoCharactersFound />}
-				<CharacterList>
-					{!isLoading &&
-						filteredCharacters.length > 0 &&
-						filteredCharacters.map((character) => (
-							<CharacterItem key={character.id} character={character} />
-						))}
-				</CharacterList>
+				<Box component="main" className="main-content">
+					{isLoading && <Loading />}
+					{!isLoading && (
+						<FilterCharacters
+							characters={characters}
+							setFilteredCharacters={setFilteredCharacters}
+						/>
+					)}
+					{!isLoading && filteredCharacters.length === 0 && (
+						<NoCharactersFound />
+					)}
+					<CharacterList>
+						{!isLoading &&
+							filteredCharacters.length > 0 &&
+							filteredCharacters.map((character) => (
+								<CharacterItem key={character.id} character={character} />
+							))}
+					</CharacterList>
+				</Box>
+				<Box component="footer" className="footer-wrapper">
+					<Typography variant="body2" className="footer-text">
+						Developed by Fernando Martínez &copy; {new Date().getFullYear()}
+					</Typography>
+				</Box>
 			</Box>
 			{!isLoading && filteredCharacters.length > 0 && (
 				<PageSelection page={page} setPage={setPage} />

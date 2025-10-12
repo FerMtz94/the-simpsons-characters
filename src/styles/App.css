@@ -1,4 +1,4 @@
-.app-container {
+.main-content {
 	padding-bottom: 80px;
 }
 
@@ -9,6 +9,12 @@
 	text-wrap: stable;
 	text-align: center;
 	width: 100%;
+}
+
+.app-wrapper {
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+	min-height: 100dvh;
 }
 
 .character-list-container {
@@ -64,6 +70,7 @@ h6 {
 	bottom: 0px;
 	left: 50%;
 	transform: translateX(-50%);
+	z-index: 1;
 }
 
 .page-selection-container {
@@ -71,6 +78,7 @@ h6 {
 	justify-content: center;
 	align-items: center;
 	height: 100%;
+	z-index: 1;
 }
 
 .loading-container {
@@ -87,4 +95,36 @@ h6 {
 	align-items: center;
 	width: 100%;
 	height: 50dvh;
+}
+
+@media (width >= 768px) {
+	.footer-wrapper {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: flex-end;
+		width: 100%;
+		height: 60px;
+	}
+}
+
+@media (width < 768px) {
+	.footer-wrapper {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		height: 80px;
+		margin-bottom: 80px;
+	}
+}
+
+.footer-text {
+	position: relative;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	z-index: 2;
+	color: var(--mui-palette-primary-main);
 }
