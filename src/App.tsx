@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Modal, Typography } from "@mui/material";
 import "./styles/App.css";
 import { useQuery } from "@tanstack/react-query";
 import { Analytics } from "@vercel/analytics/react";
@@ -16,6 +16,8 @@ function App() {
 	const [characters, setCharacters] = useState<Character[]>([]);
 	const [filteredCharacters, setFilteredCharacters] = useState<Character[]>([]);
 	const [page, setPage] = useState(1);
+	const [open, setOpen] = useState(false);
+	const [phrase, setPhrase] = useState<string>("");
 
 	const { data: characterData, isLoading } = useQuery({
 		queryKey: ["characters", page],
@@ -55,7 +57,12 @@ function App() {
 						{!isLoading &&
 							filteredCharacters.length > 0 &&
 							filteredCharacters.map((character) => (
-								<CharacterItem key={character.id} character={character} />
+								<CharacterItem
+									key={character.id}
+									character={character}
+									setOpen={setOpen}
+									setPhrase={setPhrase}
+								/>
 							))}
 					</CharacterList>
 				</Box>
@@ -68,6 +75,17 @@ function App() {
 			{!isLoading && filteredCharacters.length > 0 && (
 				<PageSelection page={page} setPage={setPage} />
 			)}
+			<Modal
+				open={open}
+				onClose={() => setOpen(false)}
+				className="modal-overlay"
+			>
+				<Box className="modal-box">
+					<Typography variant="body1" className="modal-text">
+						{phrase}
+					</Typography>
+				</Box>
+			</Modal>
 			<Analytics />
 		</>
 	);
