@@ -1,8 +1,9 @@
 import { ThemeProvider } from "@mui/material/styles";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { RouterProvider } from "@tanstack/react-router";
+import { router } from "./router-config.tsx";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import App from "./App.tsx";
 import { theme } from "./styles/theme.ts";
 import "./styles/index.css";
 import "@fontsource/roboto/300.css";
@@ -19,7 +20,7 @@ createRoot(rootElement).render(
 	<StrictMode>
 		<ThemeProvider theme={theme}>
 			<QueryClientProvider client={new QueryClient()}>
-				<App />
+				<RouterProvider router={router} />
 			</QueryClientProvider>
 		</ThemeProvider>
 	</StrictMode>,

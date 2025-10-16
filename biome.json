@@ -4,6 +4,9 @@
 			"a11y": {
 				"useButtonType": "warn"
 			}
+		},
+		"files": {
+			"includes": ["**", "!**/routeTree.gen.ts"]
 		}
 	}
 }
