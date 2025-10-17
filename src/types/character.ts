@@ -10,7 +10,7 @@ export interface Character {
 	status: string;
 }
 
-export interface CharacterDetail extends Character {
+export interface CharacterExtended extends Character {
   description: string;
   first_appearance_ep_id: number;
   first_appearance_sh_id: number;
