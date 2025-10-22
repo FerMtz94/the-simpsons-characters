@@ -2,13 +2,22 @@
 import type React from 'react';
 import { Box, Typography } from '@mui/material'
 import { useCharacter } from '../hooks/useCharacter';
+import { characterDetailRoute } from '../router-config';
+import { useCanGoBack, useRouter } from '@tanstack/react-router';
+import { useContext } from 'react';
+import { DetailViewContext } from '../contexts/DetailViewContext';
 
-type CharacterDetailProps = {
-  id: number;
-}
-
-export const CharacterDetail: React.FC<CharacterDetailProps> = ({ id }) => {
+export const CharacterDetail: React.FC = () => {
+  const { id } = characterDetailRoute.useParams();
   const { characterInfo, isCharacterLoading } = useCharacter(id);
+  const { updateCharacterViewOpen } = useContext(DetailViewContext);
+  const router = useRouter();
+  const canGoBack = useCanGoBack();
+
+  const backToList = () => {
+    router.history.back();
+    updateCharacterViewOpen(false);
+  }
 
   if (isCharacterLoading) {
     return <Typography variant="body1">Loading...</Typography>;
@@ -24,6 +33,13 @@ export const CharacterDetail: React.FC<CharacterDetailProps> = ({ id }) => {
         <Typography variant="body1">
             {characterInfo!.description}
         </Typography>
+        <Box>
+          {
+            canGoBack ? (
+              <button onClick={() => backToList()}>Go Back</button>
+            ) : null
+          }
+        </Box>
     </Box>
   )
 }
