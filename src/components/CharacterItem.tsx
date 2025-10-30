@@ -1,4 +1,4 @@
-import MessageIcon from "@mui/icons-material/Message";
+// import MessageIcon from "@mui/icons-material/Message";
 import { Box, Typography } from "@mui/material";
 import type React from "react";
 import { useContext, useEffect } from "react";
@@ -14,8 +14,8 @@ interface CharacterItemProps {
 
 export const CharacterItem: React.FC<CharacterItemProps> = ({
 	character,
-	setOpen,
-	setPhrase,
+	// setOpen,
+	// setPhrase,
 }) => {
 	const { updateCharacterViewOpen } = useContext(DetailViewContext);
 	const router = useRouter();
