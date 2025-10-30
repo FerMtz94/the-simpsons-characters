@@ -1,32 +1,45 @@
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { Box, Button, Typography } from "@mui/material";
+import { useNavigate } from "@tanstack/react-router";
+import { useContext } from "react";
+import { PageContext } from "../contexts/PageContext";
 
-interface PageSelectionProps {
-	page: number;
-	setPage: (page: number) => void;
-}
+export const PageSelection: React.FC = () => {
+	const navigate = useNavigate();
+	const { page, updatePage } = useContext(PageContext);
 
-export const PageSelection: React.FC<PageSelectionProps> = ({
-	page,
-	setPage,
-}) => {
 	const handlePageChange = (option: "next" | "prev") => {
-		if (option === "next") {
-			if (page === 60) {
-				setPage(1); // Wrap around to the first page
+		return () => {
+			navigate({
+				to: '/characters',
+				search: { page: 
+					option === "next" ?
+					 page === 60 ? 
+					 	1 : 
+						page + 1 : 
+					page === 1 ? 
+						60 : 
+						page-1  
+					},
+			});
+			
+			if (option === "next") {
+				if (page === 60) {
+					updatePage(1); // Wrap around to the first page
+					return;
+				}
+				updatePage(page + 1);
 				return;
 			}
-			setPage(page + 1);
-			return;
-		}
-		if (option === "prev") {
-			if (page === 1) {
-				setPage(60); // Wrap around to the last page
+			if (option === "prev") {
+				if (page === 1) {
+					updatePage(60); // Wrap around to the last page
+					return;
+				}
+				updatePage(page - 1);
 				return;
 			}
-			setPage(page - 1);
-			return;
 		}
 	};
 
@@ -41,9 +54,7 @@ export const PageSelection: React.FC<PageSelectionProps> = ({
 				<Button
 					variant="contained"
 					color="primary"
-					onClick={() => {
-						handlePageChange("prev");
-					}}
+					onClick={ handlePageChange("prev") }
 				>
 					<ArrowBackIcon fontSize="medium" />
 				</Button>
@@ -60,9 +71,7 @@ export const PageSelection: React.FC<PageSelectionProps> = ({
 				<Button
 					variant="contained"
 					color="primary"
-					onClick={() => {
-						handlePageChange("next");
-					}}
+					onClick={ handlePageChange("next") }
 				>
 					<ArrowForwardIcon fontSize="medium" />
 				</Button>

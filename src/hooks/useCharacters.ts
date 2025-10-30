@@ -1,12 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getCharacters } from "../api/characters";
 import type { Character } from "../types/character";
+import { PageContext } from "../contexts/PageContext";
 
 export const useCharacters = () => {
 	const [characters, setCharacters] = useState<Character[]>([]);
 	const [filteredCharacters, setFilteredCharacters] = useState<Character[]>([]);
-	const [page, setPage] = useState(1);
+	const { page } = useContext(PageContext);
 
 	const { data: characterData, isLoading } = useQuery({
 		queryKey: ["characters", page],
@@ -28,7 +29,6 @@ export const useCharacters = () => {
 		filteredCharacters,
 		setFilteredCharacters,
 		page,
-		setPage,
 		isLoading,
 	};
 };

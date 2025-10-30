@@ -13,12 +13,11 @@ import { useCharacters } from "./hooks/useCharacters";
 function App() {
 	const [open, setOpen] = useState(false);
 	const [phrase, setPhrase] = useState<string>("");
+
 	const {
 		characters,
 		filteredCharacters,
 		setFilteredCharacters,
-		page,
-		setPage,
 		isLoading,
 	} = useCharacters();
 
@@ -61,7 +60,7 @@ function App() {
 				</Box>
 			</Box>
 			{!isLoading && filteredCharacters.length > 0 && (
-				<PageSelection page={page} setPage={setPage} />
+				<PageSelection />
 			)}
 			<Modal
 				open={open}
