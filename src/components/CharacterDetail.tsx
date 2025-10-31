@@ -1,6 +1,6 @@
 
 import type React from 'react';
-import { Box, Typography } from '@mui/material'
+import { Box, Button, Typography } from '@mui/material'
 import { useCharacter } from '../hooks/useCharacter';
 import { characterDetailRoute } from '../router-config';
 import { useCanGoBack, useRouter } from '@tanstack/react-router';
@@ -29,17 +29,21 @@ export const CharacterDetail: React.FC = () => {
 
   return (
     <Box component="article">
+      <Box component="header" className="app-title">
         <Typography variant="h2">{characterInfo!.name}</Typography>
-        <Typography variant="body1">
+      </Box>
+      <Box component="section" className="text-container">
+        <Typography variant="body1" className="text-paragraph">
             {characterInfo!.description}
         </Typography>
-        <Box>
-          {
-            canGoBack ? (
-              <button onClick={() => backToList()}>Go Back</button>
-            ) : null
-          }
-        </Box>
+      </Box>
+      {
+        canGoBack ? (
+          <Box className="centered-button-container">
+            <Button variant="contained" color="primary" onClick={() => backToList()}>Go Back</Button>
+          </Box>
+        ) : null
+      }
     </Box>
   )
 }
